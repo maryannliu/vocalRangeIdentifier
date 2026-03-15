@@ -2,6 +2,8 @@ import sounddevice as sd
 import numpy as np 
 import parselmouth 
 from vocalRanges import VocalRanges, vocalRangesMean
+import soundfile as sf
+import io
 
 def recording():
     '''
@@ -25,18 +27,21 @@ def recording():
 
 def soundToMedianFrequency(file):
     '''
-    Take in .wav file, tranfer to parselmouth format, extract the frequencies, 
-    filter out 0s, and return median of frequency array. 
+    Take in streamlit audio input, convert it to numpy array and let parselmouth read it.
+    Find the median frequency and return. 
 
     Args: 
-        String: file name 
+        Object: streamlit audio input 
     
     Return: 
         Float: median of frequncy array.     
 
 
     '''
-    sound = parselmouth.Sound(file)
+    
+    data, sampleRate = sf.read(io.BytesIO(file.getvalue()))
+
+    sound = parselmouth.Sound(data, sampleRate)
     pitch = sound.to_pitch()
     frequencies = pitch.selected_array['frequency']
     f0 = frequencies[frequencies > 0]
@@ -55,16 +60,17 @@ def soundToSustainedFrequency(file, k=2):
     7. calculate mean of remaining frequencies 
 
     Arg:
-        file (string): .wav file filename
+        Object: streamlit audio input
         k (int): number of sigma to keep frequencies. Default at 2
 
     Return:
         int: sustained frequency 
 
     '''
-    # 
     
-    sound = parselmouth.Sound(file)
+    data, sampleRate = sf.read(io.BytesIO(file.getvalue()))
+
+    sound = parselmouth.Sound(data, sampleRate)
     pitch = sound.to_pitch()
     frequencies = pitch.selected_array['frequency']
 
