@@ -2,4 +2,3 @@ streamlit
 numpy
 praat-parselmouth
 soundfile
-sounddevice

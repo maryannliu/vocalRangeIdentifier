@@ -1,29 +1,29 @@
-import sounddevice as sd
+# import sounddevice as sd
 import numpy as np 
 import parselmouth 
 from vocalRanges import VocalRanges, vocalRangesMean
 import soundfile as sf
 import io
 
-def recording():
-    '''
-    Record audio input and return the inverse of numpy array to be processed in parselmouth
+# def recording():
+#     '''
+#     Record audio input and return the inverse of numpy array to be processed in parselmouth
     
-    Return: 
-        numpy array: [channel, sampleing rate]
-    '''
-    SAMPLERATE = 48000
+#     Return: 
+#         numpy array: [channel, sampleing rate]
+#     '''
+#     SAMPLERATE = 48000
 
-    sd.default.samplerate = SAMPLERATE
-    sd.default.channels = 1
+#     sd.default.samplerate = SAMPLERATE
+#     sd.default.channels = 1
 
-    print("Recording...")
-    sound = sd.rec(int(5*SAMPLERATE))
-    sd.wait()
-    print("Done")
+#     print("Recording...")
+#     sound = sd.rec(int(5*SAMPLERATE))
+#     sd.wait()
+#     print("Done")
     
-    sound = sound.T
-    return sound 
+#     sound = sound.T
+#     return sound 
 
 def soundToMedianFrequency(file):
     '''
