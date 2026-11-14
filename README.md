@@ -91,11 +91,9 @@ vocalRange/
 └── .venv/      (not committed)
 ```
 
-
-## Future Improvements
 ## Future Improvements
 
-- **Web Deployment:** Deploy the application so it can be accessed through the internet without requiring users to clone the repository or install dependencies locally.
+
 - **Improved User Interface:** Enhance the application's design with a more intuitive and visually appealing interface to provide a better user experience.
 - **Browser-Based Audio Recording:** Replace local microphone recording with browser-based audio capture, allowing users to record their voice directly from the website.
 - **Enhanced Pitch Detection:** Improve the accuracy and robustness of pitch detection, particularly in noisy environments.
